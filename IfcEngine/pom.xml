@@ -1,7 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>IfcEngine</groupId>
+	<groupId>OpensourceBIM</groupId>
 	<artifactId>IfcEngine</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<build>
@@ -28,14 +28,14 @@
 	</build>
 	<dependencies>
 		<dependency>
-			<groupId>PluginBase</groupId>
-			<artifactId>PluginBase</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
-		</dependency>
-		<dependency>
 			<groupId>net.java.dev.jna</groupId>
 			<artifactId>jna</artifactId>
 			<version>4.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>OpensourceBIM</groupId>
+			<artifactId>PluginBase</artifactId>
+			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
