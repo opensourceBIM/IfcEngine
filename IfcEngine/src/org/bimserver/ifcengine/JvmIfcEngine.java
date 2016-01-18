@@ -35,6 +35,7 @@ import java.io.PipedInputStream;
 import java.io.PipedOutputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.List;
 
 import org.apache.commons.io.IOUtils;
 import org.bimserver.ifcengine.jvm.IfcEngineServer;
@@ -52,15 +53,17 @@ public class JvmIfcEngine implements RenderEngine {
 	private final Path schemaFile;
 	private final Path nativeBaseDir;
 	private boolean useSecondJvm = true;
-	private final String classPath;
 	private final Path tempDir;
 	private volatile RenderEngineException lastException;
+	private final List<String> classPathEntries;
+	private String classLocation;
 
-	public JvmIfcEngine(Path schemaFile, Path nativeBaseDir, Path tempDir, String classPath) throws RenderEngineException {
+	public JvmIfcEngine(Path schemaFile, Path nativeBaseDir, Path tempDir, String classLocation, List<String> classPathEntries) throws RenderEngineException {
 		this.schemaFile = schemaFile;
 		this.nativeBaseDir = nativeBaseDir;
 		this.tempDir = tempDir;
-		this.classPath = classPath;
+		this.classLocation = classLocation;
+		this.classPathEntries = classPathEntries;
 	}
 
 	public void init() throws RenderEngineException {
@@ -102,16 +105,11 @@ public class JvmIfcEngine implements RenderEngine {
 			}
 			command.append(" -classpath ");
 			command.append("\"");
-			if (classPath != null) {
-				File file = new File(classPath);
-				if (file.isDirectory()) {
-					for (File subFile : file.listFiles()) {
-						if (subFile.getName().endsWith(".jar")) {
-							command.append(subFile.getAbsolutePath() + File.pathSeparator);
-						}
-					}
+			command.append(classLocation + File.pathSeparator);
+			if (classPathEntries != null) {
+				for (String classPathEntry : classPathEntries) {
+					command.append(classPathEntry + File.pathSeparator);
 				}
-				command.append(classPath + File.pathSeparator);
 			}
 			command.append("\"");
 			String mem = "512m";

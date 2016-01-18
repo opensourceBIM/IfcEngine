@@ -33,9 +33,9 @@
 			<version>4.2.1</version>
 		</dependency>
 		<dependency>
-			<groupId>OpensourceBIM</groupId>
+			<groupId>org.opensourcebim</groupId>
 			<artifactId>PluginBase</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>1.5.8-SNAPSHOT</version>
 		</dependency>
 	</dependencies>
 </project>
