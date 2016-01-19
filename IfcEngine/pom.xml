@@ -114,12 +114,12 @@
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>PluginBase</artifactId>
-			<version>1.5.8-SNAPSHOT</version>
+			<version>1.5.8</version>
 		</dependency>
 		<dependency>
 			<groupId>org.opensourcebim</groupId>
 			<artifactId>Shared</artifactId>
-			<version>1.5.8-SNAPSHOT</version>
+			<version>1.5.8</version>
 		</dependency>
 	</dependencies>
 	<distributionManagement>
@@ -145,7 +145,7 @@
 		<system>GitHub</system>
 		<url>https://github.com/opensourceBIM/IfcEngine/issues</url>
 	</issueManagement>
-	<name>BuildingSMARTLibrary</name>
+	<name>IfcEngine</name>
 	<url>https://github.com/opensourceBIM/IfcEngine</url>
 	<licenses>
 		<license>
