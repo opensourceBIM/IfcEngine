@@ -24,15 +24,9 @@ import org.bimserver.utils.PathUtils;
 public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
 	private PluginManagerInterface pluginManager;
-	private boolean initialized = false;
 	private Path nativeFolder;
 	private Path schemaFile;
 	private PluginContext pluginContext;
-
-	@Override
-	public String getVersion() {
-		return "1.0";
-	}
 
 	@Override
 	public void init(PluginManagerInterface pluginManager) throws PluginException {
@@ -68,7 +62,6 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 					} finally {
 						outputStream.close();
 					}
-					initialized = true;
 				} finally {
 					inputStream.close();
 				}
@@ -76,11 +69,6 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 		} catch (Exception e) {
 			throw new PluginException(e);
 		}
-	}
-
-	@Override
-	public String getDescription() {
-		return "Native implementation of an IFC Engine by RDF";
 	}
 
 	@Override
@@ -104,11 +92,6 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 		} catch (PluginException e) {
 			throw new RenderEngineException(e);
 		}
-	}
-
-	@Override
-	public boolean isInitialized() {
-		return initialized;
 	}
 
 	@Override
