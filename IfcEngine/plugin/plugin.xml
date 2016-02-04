@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PluginDescriptor>
-	<PluginImplementation>
+	<JavaPlugin>
 		<interfaceClass>org.bimserver.plugins.renderengine.RenderEnginePlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifcengine.JvmRenderEnginePlugin</implementationClass>
 		<description>Native implementation of an IFC Engine by RDF</description>
-		<enabled>true</enabled>
-	</PluginImplementation>
+		
+	</JavaPlugin>
 </PluginDescriptor>
