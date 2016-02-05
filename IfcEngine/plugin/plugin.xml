@@ -4,6 +4,5 @@
 		<interfaceClass>org.bimserver.plugins.renderengine.RenderEnginePlugin</interfaceClass>
 		<implementationClass>org.bimserver.ifcengine.JvmRenderEnginePlugin</implementationClass>
 		<description>Native implementation of an IFC Engine by RDF</description>
-		
 	</JavaPlugin>
 </PluginDescriptor>
