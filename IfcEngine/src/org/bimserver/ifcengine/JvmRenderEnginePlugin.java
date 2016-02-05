@@ -29,8 +29,8 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	private PluginContext pluginContext;
 
 	@Override
-	public void init(PluginManagerInterface pluginManager) throws PluginException {
-		this.pluginManager = pluginManager;
+	public void init(PluginContext pluginContext) throws PluginException {
+		this.pluginContext = pluginContext;
 		try {
 			pluginContext = pluginManager.getPluginContext(this);
 			String os = System.getProperty("os.name").toLowerCase();
@@ -92,11 +92,6 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 		} catch (PluginException e) {
 			throw new RenderEngineException(e);
 		}
-	}
-
-	@Override
-	public String getDefaultName() {
-		return "IFC Engine DLL";
 	}
 
 	@Override
