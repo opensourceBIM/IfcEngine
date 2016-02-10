@@ -92,7 +92,7 @@ public class IfcEngineServer extends Thread {
 				}
 					break;
 				case OPEN_MODEL_STREAMING: {
-					int size = in.readInt();
+					long size = in.readLong();
 					Pointer modelId = ifcEngine.loadFromInputStream(in, size, schemaFileName);
 					int newPointerKey = savePointer(modelId);
 					out.writeInt(newPointerKey);

@@ -185,11 +185,11 @@ public class JvmIfcEngine implements RenderEngine {
 		return new JvmIfcEngineModel(this, modelId);
 	}
 
-	public synchronized JvmIfcEngineModel openModel(InputStream inputStream, int size) throws RenderEngineException {
+	public synchronized JvmIfcEngineModel openModel(InputStream inputStream, long size) throws RenderEngineException {
 		checkRunning();
 		writeCommand(Command.OPEN_MODEL_STREAMING);
 		try {
-			out.writeInt(size);
+			out.writeLong(size);
 			IOUtils.copy(inputStream, out);
 		} catch (IOException e) {
 			throw new RenderEngineException(e);

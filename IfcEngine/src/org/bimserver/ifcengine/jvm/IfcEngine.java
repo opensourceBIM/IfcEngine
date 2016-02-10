@@ -64,7 +64,7 @@ public class IfcEngine {
 		engine = IfcEngineInterface.INSTANCE;
 	}
 
-	public Pointer loadFromInputStream(final InputStream in, final int size, String schemaName) {
+	public Pointer loadFromInputStream(final InputStream in, final long size, String schemaName) {
 		final byte[] buffer = new byte[1024];
 		IfcEngineInterface.StreamCallback fn = new IfcEngineInterface.StreamCallback() {
 			int total = 0;
@@ -75,7 +75,7 @@ public class IfcEngine {
 				}
 				ByteBuffer byteBuffer = pointer.getByteBuffer(0, 1024);
 				try {
-					int read = in.read(buffer, 0, Math.min(1024, size - total));
+					int read = in.read(buffer, 0, (int)Math.min(1024, size - total));
 					if (read == -1) {
 						return -1;
 					}
