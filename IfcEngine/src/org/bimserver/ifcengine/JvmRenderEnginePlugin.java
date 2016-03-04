@@ -14,7 +14,6 @@ import org.bimserver.models.store.ObjectDefinition;
 import org.bimserver.plugins.Dependency;
 import org.bimserver.plugins.PluginConfiguration;
 import org.bimserver.plugins.PluginContext;
-import org.bimserver.plugins.PluginManagerInterface;
 import org.bimserver.plugins.renderengine.RenderEngine;
 import org.bimserver.plugins.renderengine.RenderEngineException;
 import org.bimserver.plugins.renderengine.RenderEnginePlugin;
@@ -23,7 +22,6 @@ import org.bimserver.utils.PathUtils;
 
 public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 
-	private PluginManagerInterface pluginManager;
 	private Path nativeFolder;
 	private Path schemaFile;
 	private PluginContext pluginContext;
@@ -32,7 +30,6 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	public void init(PluginContext pluginContext) throws PluginException {
 		this.pluginContext = pluginContext;
 		try {
-			pluginContext = pluginManager.getPluginContext(this);
 			String os = System.getProperty("os.name").toLowerCase();
 			String libraryName = "";
 			if (os.contains("windows")) {
@@ -45,7 +42,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 			InputStream inputStream = Files.newInputStream(pluginContext.getRootPath().resolve("lib/" + System.getProperty("sun.arch.data.model") + "/" + libraryName));
 			if (inputStream != null) {
 				try {
-					Path tmpFolder = pluginManager.getTempDir();
+					Path tmpFolder = pluginContext.getTempDir();
 					nativeFolder = tmpFolder.resolve("ifcenginedll");
 					Path file = nativeFolder.resolve(libraryName);
 					if (Files.exists(nativeFolder)) {
@@ -74,7 +71,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 	@Override
 	public RenderEngine createRenderEngine(PluginConfiguration pluginConfiguration, String schema) throws RenderEngineException {
 		try {
-			PackageMetaData packageMetaData = pluginManager.getMetaDataManager().getPackageMetaData(schema);
+			PackageMetaData packageMetaData = pluginContext.getMetaDataManager().getPackageMetaData(schema);
 			schemaFile = packageMetaData.getSchemaPath();
 			if (schemaFile == null) {
 				throw new RenderEngineException("No schema file");
@@ -88,7 +85,7 @@ public class JvmRenderEnginePlugin implements RenderEnginePlugin {
 			
 			pluginContext.getClassLocation();
 			
-			return new JvmIfcEngine(schemaFile, nativeFolder, pluginManager.getTempDir(), pluginContext.getClassLocation(), classPathEntries);
+			return new JvmIfcEngine(schemaFile, nativeFolder, pluginContext.getTempDir(), pluginContext.getClassLocation(), classPathEntries);
 		} catch (PluginException e) {
 			throw new RenderEngineException(e);
 		}

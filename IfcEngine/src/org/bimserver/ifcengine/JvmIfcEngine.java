@@ -64,14 +64,15 @@ public class JvmIfcEngine implements RenderEngine {
 		this.tempDir = tempDir;
 		this.classLocation = classLocation;
 		this.classPathEntries = classPathEntries;
-	}
-
-	public void init() throws RenderEngineException {
+		
 		if (useSecondJvm) {
 			startJvm();
 		} else {
 			startLocal();
 		}
+	}
+
+	public void init() throws RenderEngineException {
 	}
 	
 	private void startLocal() {
