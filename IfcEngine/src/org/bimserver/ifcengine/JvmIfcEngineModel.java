@@ -24,6 +24,7 @@ package org.bimserver.ifcengine;
  *****************************************************************************/
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -228,5 +229,11 @@ public class JvmIfcEngineModel implements RenderEngineModel {
         mask += TRANSFORM_GEOMETRY;
         setFilter(setting, mask);
         setting += renderEngineFilter.isTranformGeometry() ? TRANSFORM_GEOMETRY : 0;
+	}
+
+	@Override
+	public Collection<RenderEngineInstance> listInstances() throws RenderEngineException {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }
