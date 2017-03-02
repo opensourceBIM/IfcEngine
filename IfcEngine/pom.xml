@@ -5,6 +5,8 @@
 	<version>0.0.11-SNAPSHOT</version>
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<timestamp>${maven.build.timestamp}</timestamp>
+		<maven.build.timestamp.format>yyyy-MM-dd'T'HH:mm:ssZ</maven.build.timestamp.format>
 	</properties>
 	<description>BIMserver plugin that uses RDF Engine to generate geometry from IFC files</description>
 	<build>
@@ -13,6 +15,7 @@
 			<resource>
 				<targetPath>plugin</targetPath>
 				<directory>plugin</directory>
+				<filtering>true</filtering>
 			</resource>
 			<resource>
 				<targetPath>lib</targetPath>
@@ -36,6 +39,16 @@
 									<file>plugin/plugin.xml</file>
 									<type>xml</type>
 									<classifier>plugin</classifier>
+								</artifact>
+								<artifact>
+									<file>icon.png</file>
+									<type>png</type>
+									<classifier>icon</classifier>
+								</artifact>
+								<artifact>
+									<file>${project.build.outputDirectory}/plugin/version.properties</file>
+									<type>properties</type>
+									<classifier>version</classifier>
 								</artifact>
 							</artifacts>
 						</configuration>
